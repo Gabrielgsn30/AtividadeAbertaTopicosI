@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<HTML>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial	-scale=1.0">
+		<style>
+			table,th,td{
+				border-style:solid;
+				border-color:black;
+			}
+		</style>
+		<script>
+			var cadastros=[];
+			var i=0;
+			function cadastrar(){
+				var matricula = document.getElementById("matricula").value;
+				var nome = document.getElementById("nome").value;
+				var email = document.getElementById("email").value;
+				var telefone = document.getElementById("telefone").value;
+				var cliente = new Object();
+				cliente.matricula=matricula;
+				cliente.nome=nome;
+				cliente.email=email;
+				cliente.telefone=telefone;
+				cadastros[i]=cliente;
+				i++;
+				document.getElementById("matricula").value = '';
+				document.getElementById("nome").value = '';
+				document.getElementById("email").value = '';
+				document.getElementById("telefone").value = '';
+				alert("Cadastro Efetuado!!!");
+
+			}
+			function geraTabela(){
+				var x;
+				var tabela = document.getElementById("tabela");
+				for(x=0;x<i;x++){
+
+					let c1 = document.createElement("td");
+					let t1 = document.createTextNode(cadastros[x].matricula);
+					c1.appendChild(t1);
+
+
+					let c2 = document.createElement("td");
+					let t2 = document.createTextNode(cadastros[x].nome);
+					c2.appendChild(t2);
+
+					let c3 = document.createElement("td");
+					let t3 = document.createTextNode(cadastros[x].email);
+					c3.appendChild(t3);
+
+					let c4 = document.createElement("td");
+					let t4 = document.createTextNode(cadastros[x].telefone);
+					c4.appendChild(t4);
+
+
+					let linha = document.createElement("tr");
+					linha.appendChild(c1);
+					linha.appendChild(c2);
+					linha.appendChild(c3);
+					linha.appendChild(c4);
+					tabela.appendChild(linha);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		Matricula: <input type="text" id="matricula"><br>
+		Nome: <input type="text" id="nome"><br>
+		E-mail: <input type="text" id="email"><br>
+		Telefone: <input type="text" id="telefone"><br><br>
+		<button onclick="cadastrar()">Cadastrar</button>
+		<button onclick="geraTabela()">Mostrar dados</button>
+		<table id="tabela">
+			<tr>
+				<th>Matricula</th><th>Nome</th><th>Email</th><th>Telefone</th>
+			</tr>
+		</table>
+	</body>
+</html>
